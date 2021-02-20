@@ -5,16 +5,23 @@
       <li>3</li>
       <li>5</li>
     </ul>
+    {{ this.isGetterLoading }}
+    <button @click="setLoading(true)">触发loading</button>
   </div>
 </template>
 <script>
-import {getUserAuth} from "@/views/list/index.js";
+import { mapGetters, mapActions } from "vuex";
+// import { getUserAuth } from "@/views/list/index.js";
 export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log(getUserAuth,"getUserAuth");
+  mounted() {},
+  computed: {
+    ...mapGetters(["isGetterLoading"]),
+  },
+  methods: {
+    ...mapActions(["setLoading"]),
   },
 };
 </script>
