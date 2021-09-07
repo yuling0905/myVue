@@ -5,7 +5,7 @@ const Workbench = () => import('@/views/workbench.vue')
 const Position = () => import('@/views/position.vue')
 const Home = () => import('@/views/Home.vue')
 const List = () => import('@/views/list/list.vue')
-const User = () => import('@/views/user/index.vue')
+// const User = () => import('@/views/user/index.vue')
 const Company = () => import('@/views/user/company.vue')
 const auth = () => import('@/views/user/auth.vue')
 Vue.use(VueRouter)
@@ -30,29 +30,51 @@ const routes = [{
         component: Position,
       },
       {
-        // 个人中心
-        path: 'user',
-        component: User,
-        children: [{
-            path: '',
-            redirect: '/user/company',
-          },
-          {
-            path: 'company',
-            component: Company,
-          },
-          {
-            // 权限管理
-            name: 'auth',
-            path: 'auth',
-            component: auth,
-            meta: {
-              requiresAuth: true,
-              parentName: 'user'
-            },
-          },
-        ]
-      }
+        name:'Company',
+        path: '/company',
+        component: Company,
+        meta: {
+          requiresAuth: true,
+
+        },
+      },
+      {
+        // 权限管理
+        name: 'auth',
+        path: '/auth',
+        component: auth,
+        meta: {
+          requiresAuth: true,
+
+        },
+      },
+
+      // {
+      //   // 个人中心
+      //   path: 'user',
+      //   component: User,
+      //   children: [{
+      //       path: '',
+      //       redirect: '/user/company',
+      //       parentName: 'user',
+      //     },
+      //     {
+      //       path: '/company',
+      //       component: Company,
+      //       parentName: 'user'
+      //     },
+      //     {
+      //       // 权限管理
+      //       name: 'auth',
+      //       path: '/auth',
+      //       component: auth,
+      //       meta: {
+      //         requiresAuth: true,
+      //         parentName: 'user'
+      //       },
+      //     },
+      //   ]
+      // }
 
     ],
   },

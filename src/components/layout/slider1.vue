@@ -4,36 +4,27 @@
     @mouseenter="isCollapse = false"
     @mouseleave="isCollapse = true"
   >
-    <!-- <div class="logo">
+    <div class="logo">
       <el-avatar fit="contain">
         <img :src="require('../../assets/logo.png')" />
       </el-avatar>
-    </div> -->
-    <div class="menu_slider">
-      <!--  -->
+    </div>
+    <div class="menu">
       <el-menu
-        class="el-menu-vertical el-menu-demo"
+        class="el-menu-vertical"
+        :collapse="isCollapse"
         :default-active="`${activeIndex}`"
         :router="true"
-        :unique-opened="true"
-        :collapse="isCollapse"
-       
+        active-text-color="#1890ff"
       >
-        <el-submenu :index="item.key" v-for="item in menus" :key="item.id">
-          <template slot="title">
-            <i :class="item.icon"></i>
-            <span>{{ item.name }}</span>
-          </template>
-          <el-menu-item
-            v-for="menu in item.children"
-            :key="menu.key"
-            :index="`/${menu.route}`"
-          >
-            {{ menu.name }}
-            <!-- <i :class="menu.icon"></i>
-            <span slot="title">{{ menu.name }}</span> -->
-          </el-menu-item>
-        </el-submenu>
+        <el-menu-item
+          v-for="menu in menus"
+          :key="menu.key"
+          :index="`/${menu.route}`"
+        >
+          <i :class="menu.icon"></i>
+          <span slot="title">{{ menu.name }}</span>
+        </el-menu-item>
       </el-menu>
     </div>
     <div class="lang">
@@ -42,21 +33,21 @@
   </div>
 </template>
 <script>
-import deafultMenus from "../../common/leftMenu";
+import deafultMenus from "../../common/menus";
 
 export default {
   data() {
     return {
       isCollapse: true,
+      buyModule:
+        JSON.parse(localStorage.getItem("routeList") || "{}").buyModule || "",
     };
   },
   methods: {},
   mounted() {},
   computed: {
     activeIndex() {
-      console.log(this.$route.matched.find((r) => r.path !== "").path ,`${this.menus[0].route}`)
       return (
-        
         this.$route.matched.find((r) => r.path !== "").path ||
         `/${this.menus[0].route}`
       );
@@ -88,16 +79,16 @@ export default {
     justify-content: center;
   }
 
-  .menu_slider {
-    background: rgb(84, 92, 100);
+  .menu {
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-  // padding-top: 65px;
+
     ::v-deep .el-menu {
-      // padding-top: 65px;
+      padding-top: 65px;
       height: 100%;
+
       i {
         color: #999999;
         display: inline-block;
@@ -132,10 +123,9 @@ export default {
       // }
 
       .el-menu-item.is-active {
-        // border-left: 5px solid #1890ff;
-        // padding: 0 15px !important;
+        border-left: 5px solid #1890ff;
+        padding: 0 15px !important;
         background: #eaf5fe !important;
-        box-sizing: border-box;
         .el-tooltip {
           background: #eaf5fe;
           padding: 0 15px !important;
@@ -147,7 +137,7 @@ export default {
     }
 
     ::v-deep .el-menu-vertical:not(.el-menu--collapse) {
-      width: 200px;
+      width: 180px;
     }
   }
 

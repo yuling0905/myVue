@@ -5,7 +5,10 @@ import mutations from './mutations'
 import actions from './actions'
 Vue.use(Vuex)
 let state = {
-  loading: false
+  // 页面加载loading
+  loading: false,
+  // 是否登录
+  isSignIn:false,
 }
 let store = new Vuex.Store({
   state,

@@ -1,1 +1,2 @@
 export const SET_LOADING = 'SET_LOADING'
+export const SET_SIGN_STATUS = 'SET_SIGN_STATUS'

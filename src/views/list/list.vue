@@ -7,6 +7,7 @@
     </ul>
     {{ this.isGetterLoading }}
     <button @click="setLoading(true)">触发loading</button>
+    <button @click="setLoading(false)">关闭loading</button>
   </div>
 </template>
 <script>

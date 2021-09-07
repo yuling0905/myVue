@@ -3,8 +3,12 @@ export default [{
         name: '工作台',
         route: 'workbench',
         icon: 'el-icon-s-grid',
-
-
+        children: [{
+            key: 'workbench',
+            name: '工作台',
+            route: 'workbench',
+            icon: 'el-icon-s-grid',
+        }]
 
     },
     {
@@ -12,8 +16,12 @@ export default [{
         name: '职 位',
         route: 'Position',
         icon: 'el-icon-postcard',
-
-
+        children: [{
+            key: 'Position',
+            name: '职 位',
+            route: 'Position',
+            icon: 'el-icon-postcard',
+        }]
     },
     {
         key: 'user',
